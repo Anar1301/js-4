@@ -215,5 +215,6 @@ data = [
 const findMaxBalanceStudent = (data, minbalance) => {
   return data.filter((data) => data.balance > minbalance);
 };
-result = findMaxBalanceStudent(data, 1000000);
+result = findMaxBalanceStudent(data, 10000000);
 console.log(result);
+//5
