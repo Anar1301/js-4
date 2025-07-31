@@ -215,10 +215,10 @@ console.log("bodlogo14=== ", result55);
 
 // 15. Бүтээгдэхүүнүүдийг үнээр нь өсөхөөр эрэмбэлж буцаадаг функц бич.
 function sortByPriceAscending(products) {
-  byprice = products.sort((a, b) => {
+  let byPrice = products.sort((a, b) => {
     return a.price - b.price;
   });
-  return byprice;
+  return byPrice;
 }
 let rate = sortByPriceAscending(data);
 console.log("bodlogo15=== ", rate);
@@ -233,27 +233,57 @@ function getLowStockProducts(products) {
 let v = getLowStockProducts(data);
 console.log("bodlogo16=== ", v);
 // 17. Давхардалгүй нийлүүлэгчийн нэрсийн массив буцаадаг функц бич.
-const getUniqueSuppliers = products.map((product) => {
-  products.forEach((products) => {
-    uniqueSuppliers[name] = true;
+function getUniqueSuppliers(products) {
+  let arrSuppliers = products.map((product) => {
+    return product.supplier;
   });
-  return products;
-});
-return products;
-
-console.log(Object.keys(uniqueSuppliers));
+  let uniqueSuppliers = [];
+  arrSuppliers.forEach((supplier) => {
+    if (uniqueSuppliers.includes(supplier)) {
+    } else {
+      uniqueSuppliers.push(supplier);
+    }
+  });
+  return uniqueSuppliers;
+}
+const resultUniqueSuppliers = getUniqueSuppliers(data);
+console.log("Array Of Unique Suppliers", resultUniqueSuppliers);
 
 // 18. Зөвхөн name ба price талбартай шинэ массив үүсгэдэг функц бич.
 function getNameAndPriceList(products) {
-  // ...
+  let nameAndPrice = products.map((products) => {
+    return { name: products.name, price: products.price };
+  });
+  return nameAndPrice;
 }
+result88 = getNameAndPriceList(data);
+console.log(result88);
 
 // 19. Үнэлгээ нь 4.5-аас их бүх бүтээгдэхүүнүүдийг буцаадаг функц бич.
 function getHighlyRatedProducts(products) {
-  // ...
+  let mid = products.filter((products) => {
+    return products.stock <= 4.5;
+  });
+  return mid;
 }
-
+let t = getHighlyRatedProducts(data);
+console.log("bodlogo19=== ", t);
 // 20. Бүх бүтээгдэхүүнд `id` талбар нэмж өгдөг функц бич (жишээ нь 1, 2, 3...).
 function addIdToProducts(products) {
-  // ...
+  let addId = products.map((products, id) => {
+    id++;
+    return {
+      id,
+      name: products.name,
+      category: products.category,
+      finalprice: products.price,
+      stock: products.stock,
+      brand: products.brand,
+      rating: products.rating,
+      isDiscounted: products.isDiscounted,
+    };
+  });
+  return addId;
 }
+resultF = addIdToProducts(data);
+console.log(resultF);
